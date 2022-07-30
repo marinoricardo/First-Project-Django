@@ -1,6 +1,8 @@
 from tabnanny import verbose
 from tkinter import CASCADE
 from django.db import models
+from django.utils import timezone
+
 
 # Create your models here.
 
@@ -15,7 +17,7 @@ class Categoria(models.Model):
         return self.nome
 
 class Transacao(models.Model):
-    data = models.DateTimeField(auto_now_add=True)
+    data = models.DateTimeField(default=timezone.now)
     descricao = models.CharField(max_length=250)
     valor = models.DecimalField(max_digits=7,decimal_places=2)
     categoria = models.ForeignKey(Categoria,on_delete=models.CASCADE)
